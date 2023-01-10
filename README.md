@@ -3,5 +3,5 @@ Stefano Tower Defense HD is a tower defense game with multiple levels, towers, a
 
 Development Engineer: SuhraabAlimi, 
 QA Engineer:
-Project Manager:
+Project Manager: Stefano Giron
 Product Manager: SuhraabAlimi
