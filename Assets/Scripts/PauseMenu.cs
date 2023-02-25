@@ -39,4 +39,13 @@ public class PauseMenu : MonoBehaviour
 
 
     }
+    public void unPause()
+    {
+
+        menu.SetActive(false);
+        Time.timeScale = timeSpeed;
+
+
+
+    }
 }
