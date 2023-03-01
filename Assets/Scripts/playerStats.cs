@@ -4,12 +4,29 @@ using UnityEngine;
 using UnityEngine.UI;
 public class playerStats : MonoBehaviour
 {
-    public int lives;
-    public int cash;
     public Text cashText;
     public Text livesText;
     public Button DartMonkey;
     public Button TackShooter;
+
+
+    public static int cash;
+    public int startMoney = 300;
+
+    public static int lives;
+    public int startLives = 20;
+
+    public static int Rounds;
+    void Start()
+    {
+        Rounds = 0;
+        cash = startMoney;
+        lives = startLives;
+        //   livesText.text = "Lives: " + lives;
+        //      cashText.text = "Cash: $" + cash;
+    }
+
+
     void Update()
     {
         if (cash < 215)
@@ -29,13 +46,6 @@ public class playerStats : MonoBehaviour
         {
         //    TackShooter.interactable = true;
         }
-    }
-    void Start()
-    {
-        lives = 100;
-        cash = 650;
-     //   livesText.text = "Lives: " + lives;
-  //      cashText.text = "Cash: $" + cash;
     }
     public void addCash(int money)
     {

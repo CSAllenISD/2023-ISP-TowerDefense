@@ -33,6 +33,7 @@ public class enemy : MonoBehaviour
     public bool isRainbow;
     public bool isStefano = true;
     public bool isDead = false;
+    public int RBE = 1;
     void Start()
     {
 
@@ -142,7 +143,7 @@ public class enemy : MonoBehaviour
         }
         GameObject effect = (GameObject)Instantiate(deathEffect, ParentTransform.position, Quaternion.identity);
         Destroy(effect, 0.1f);
-
+        WaveSpawner.EnemiesAlive--;
         Destroy(parentObject);
     }
 
