@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -25,12 +26,33 @@ public class selfTyping : MonoBehaviour
     public string[] charNames;
     public Animator[] charAnimators;
 
+    [Header("Fade To Black And Next Scene")]
+    public bool fadeAtEnd = false;
+    public GameObject fadeObject;
+    public string nextScene;
+
+    [Header("Enable Logic")]
+    public bool endInLogic = false;
+    public GameObject[] logicMenu;
+    public GameObject tBox;
+    public GameObject nBox;
+
     [Header("Robot's Face")]
     public GameObject[] happy;
     public GameObject[] confused;
     public GameObject[] angry;
     
-    void Start()
+    private void openLogic()
+    {
+        for (int a = 0; a < (logicMenu.Length); a++)
+        {
+            logicMenu[a].SetActive(true);
+        }
+        tBox.SetActive(false);
+        nBox.SetActive(false);
+        gameObject.SetActive(false);
+    }
+    void OnEnable()
     {
         textPosition = 0;
         StartCoroutine(ShowText(textPosition));
@@ -145,7 +167,23 @@ public class selfTyping : MonoBehaviour
             StartCoroutine(ShowText(textPosition));
         } else
         {
+            if (fadeAtEnd)
+            {
+                StartCoroutine(fade());
+            }
+            if (endInLogic)
+            {
+                openLogic();
+            }
             Debug.Log("text has ended!");
         }
+    }
+
+    IEnumerator fade()
+    {
+        fadeObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene(nextScene);
+
     }
 }

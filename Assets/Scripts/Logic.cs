@@ -25,6 +25,13 @@ public class Logic : MonoBehaviour
     public Outline[] pointOutline;
     public bool[] selectedLogic;
     public int[] connectsWith; //The point in the index of this array connects with the value in that index, so if connectsWith[0] = 2, then logic number 0 connects with logic number 2. >v<
+
+    [Header("Misc")]
+    public GameObject[] logicMenu;
+    public GameObject[] connection;
+    public GameObject noConnection;
+    public GameObject tBox;
+    public GameObject nBox;
     void Update()
     {
         if (menuOpen)
@@ -140,11 +147,15 @@ public class Logic : MonoBehaviour
 
     public void connectPoints()
     {
+        cButton.interactable = false;
+        StartCoroutine(hidePoints());
+        allPoints.SetActive(false);
         for (int i = 0; i < (hasLogic.Length); i++)
         {
             if (pointOutline[i].enabled == true)
             {
                 selectedLogic[i] = true;
+                pointOutline[i].enabled = false;
             } else
             {
                 selectedLogic[i] = false;
@@ -153,16 +164,35 @@ public class Logic : MonoBehaviour
         }
         int connectedPoint1 = -1;
         int connectedPoint2 = -1;
+        bool success = false;
         for (int i = 0; i < (hasLogic.Length); i++)
         {
             if (selectedLogic[i] && selectedLogic[connectsWith[i]])
             {
+                success = true;
                 Debug.Log("successfully connected point " + i + " and point " + connectsWith[i]);
                 connectedPoint1 = i;
                 connectedPoint2 = connectsWith[i];
                 i = hasLogic.Length;
+                for (int a = 0; a < (logicMenu.Length); a++)
+                { 
+                    logicMenu[a].SetActive(false);
+                }
+                connection[connectedPoint1].SetActive(true);
+                tBox.SetActive(true);
+                nBox.SetActive(true);
             }
         }
-
+        if (!success)
+        {
+            Debug.Log("The two points do not connect.");
+            for (int a = 0; a < (logicMenu.Length); a++)
+            {
+                logicMenu[a].SetActive(false);
+            }
+            noConnection.SetActive(true);
+            tBox.SetActive(true);
+            nBox.SetActive(true);
+        }
     }
 }
