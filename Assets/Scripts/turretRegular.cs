@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class turretRegular : MonoBehaviour
 {
 	private Transform target;
@@ -13,7 +13,7 @@ public class turretRegular : MonoBehaviour
 	public Transform shootSpot1;
 	GameObject nearestEnemy = null;
 	public GameObject enemy = null;
-
+	public bool seeHidden = false;
 	void FixedUpdate()
 	{
 		look4target();
@@ -25,12 +25,12 @@ public class turretRegular : MonoBehaviour
 				target = null;
 			}
 
-			if (Vector3.Distance(target.position, transform.position) <= radius)
+			if (Vector3.Distance(target.position, transform.position) <= radius && canShoot)
 			{
 					Vector3 vectorToTarget = target.position - transform.position;
 					float angle = (Mathf.Atan2(vectorToTarget.z, vectorToTarget.x) * Mathf.Rad2Deg - 90f);
 					Quaternion q = Quaternion.AngleAxis(angle, Vector3.down);
-					transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+					transform.rotation = Quaternion.Slerp(transform.rotation, q, 1f);
 					if (canShoot == true)
 
 				//Vector3 dir = target.position - transform.position;
@@ -65,6 +65,8 @@ public class turretRegular : MonoBehaviour
 	void look4target()
 	{
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+			GameObject[] hiddenEnemies = GameObject.FindGameObjectsWithTag("hidden");
+
 		float shortestDistance = Mathf.Infinity;
 
 		foreach (GameObject enemy in enemies)
@@ -76,7 +78,20 @@ public class turretRegular : MonoBehaviour
 				nearestEnemy = enemy;
 			}
 		}
-		if (nearestEnemy != null && shortestDistance <= radius)
+		if (seeHidden)
+        {
+			foreach (GameObject enemy in hiddenEnemies)
+			{
+				float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+				if (distanceToEnemy < shortestDistance)
+				{
+					shortestDistance = distanceToEnemy;
+					nearestEnemy = enemy;
+				}
+			}
+		}
+
+			if (nearestEnemy != null && shortestDistance <= radius)
 		{
 			target = nearestEnemy.transform;
 		}

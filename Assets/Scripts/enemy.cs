@@ -136,11 +136,7 @@ public class enemy : MonoBehaviour
                 }
             }
         }
-
-        if (isMoab == true)
-        {
-            playerStats.addCash(1);
-        }
+            playerStats.addCash(value);
         GameObject effect = (GameObject)Instantiate(deathEffect, ParentTransform.position, Quaternion.identity);
         Destroy(effect, 0.1f);
         WaveSpawner.EnemiesAlive--;
@@ -189,7 +185,7 @@ public class enemy : MonoBehaviour
     {
         if (isRainbow == true)
         {
-            playerStats.loseLife(47);
+            playerStats.loseLife(0);
         }
         if (isMoab == true && isCeramic == false)
         {
@@ -203,6 +199,7 @@ public class enemy : MonoBehaviour
         {
             playerStats.loseLife(health);
         }
+        WaveSpawner.EnemiesAlive--;
         Destroy(parentObject);
 
     }

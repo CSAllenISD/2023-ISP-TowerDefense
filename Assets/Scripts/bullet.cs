@@ -21,6 +21,7 @@ public class bullet : MonoBehaviour
     public Transform Pos3;
     public Transform Pos4;
     public GameObject secondShot;
+    public bool hitHidden = false;
     void Start()
     {
         if (minigun == false)
@@ -96,12 +97,16 @@ public class bullet : MonoBehaviour
     }
     void OnTriggerEnter(Collider thing)
     {
-        if (thing.tag == "enemy")
+        if (thing.tag == "enemy" || (thing.tag == "hidden" && hitHidden == true))
         {
             pierce -= 1;
             Debug.Log("hit");
 
             var enemy = thing.gameObject.GetComponent<enemy>();
+            if (enemy.isRainbow)
+            {
+                Destroy(gameObject);
+            }
             if (pierce >= 0)
             {
                 enemy.TakeDamage(damage);
