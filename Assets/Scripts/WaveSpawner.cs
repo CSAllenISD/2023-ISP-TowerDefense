@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using TMPro;
 public class WaveSpawner : MonoBehaviour
 {
     public static int EnemiesAlive = 0;
@@ -17,7 +18,8 @@ public class WaveSpawner : MonoBehaviour
     private int waveNumber = 0;
     public int Bob = 0;
     public int Speed = 0;
-
+    public TMP_Text texd;
+    public playerStats pStats;
 
     void Start()
     {
@@ -59,7 +61,7 @@ public class WaveSpawner : MonoBehaviour
         playerStats.Rounds++;
 
         Wave wave = waves[waveNumber];
-
+        texd.text = "Round: " + (waveNumber + 1) + "/" + waves.Length;
         EnemiesAlive = wave.maxRBE;
         //a is cluser number, i is enemy in cluster
         for (int a = 0; a < wave.count.Length; a++)
@@ -73,6 +75,7 @@ public class WaveSpawner : MonoBehaviour
         }
 
         waveNumber++;
+        pStats.addCash(100);
     }
     void SpawnEnemy(GameObject enemy)
     {
