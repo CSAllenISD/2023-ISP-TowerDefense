@@ -13,11 +13,11 @@ public class selectScript : MonoBehaviour
 	public int pricetop = 0;
 	public int pricebottom = 0;
 	public int sellValue;
-	public playerStats fortnite;
+	public playerStats pstats;
 	void Start()
 	{
-		GameObject[] ass = GameObject.FindGameObjectsWithTag("statistics");
-		fortnite = ass[0].GetComponent<playerStats>();
+		GameObject[] stats = GameObject.FindGameObjectsWithTag("statistics");
+		pstats = stats[0].GetComponent<playerStats>();
 	}
 	void Update()
 	{
@@ -55,20 +55,20 @@ public class selectScript : MonoBehaviour
 	public void upgrade()
 	{
 		Debug.Log("upgraded");
-		fortnite.addCash(-pricetop);
+		pstats.addCash(-pricetop);
 		Instantiate(TopPath, transform.position, transform.rotation);
 		Destroy(gameObject);
 	}
 	public void upgrade2()
 	{
 		Debug.Log("upgraded");
-		fortnite.addCash(-pricebottom);
+		pstats.addCash(-pricebottom);
 		Instantiate(BottomPath, transform.position, transform.rotation);
 		Destroy(gameObject);
 	}
 	public void sell()
     {
-		fortnite.addCash(sellValue);
+		pstats.addCash(sellValue);
 		Destroy(gameObject);
     }
 	IEnumerator deselectThing()

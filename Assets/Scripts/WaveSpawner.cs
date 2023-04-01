@@ -20,7 +20,7 @@ public class WaveSpawner : MonoBehaviour
     public int Speed = 0;
     public TMP_Text texd;
     public playerStats pStats;
-
+    public bool inRound;
     void Start()
     {
         waveNumber = 0;
@@ -36,8 +36,10 @@ public class WaveSpawner : MonoBehaviour
         }
         if (EnemiesAlive > 0)
         {
+            inRound = true;
             return;
         }
+        inRound = false;
         if (waveNumber == waves.Length)
         {
             gameManager.WinLevel();
@@ -92,6 +94,7 @@ public class WaveSpawner : MonoBehaviour
     {
         if ((countdown <= 0f) && (Bob == 0))
         {
+            inRound = true;
             Bob = +1;
         }
         else if ((countdown > 0f) && (Speed == 0))
