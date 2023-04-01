@@ -11,9 +11,14 @@ public class turretRegular : MonoBehaviour
 	public float radius = 100f;
 	public GameObject bullet;
 	public Transform shootSpot1;
+	public Transform shootSpot2;
+	public Transform shootSpot3;
 	GameObject nearestEnemy = null;
 	public GameObject enemy = null;
 	public bool seeHidden = false;
+	public bool shootAnim = false;
+	public bool tripleCannon = false;
+	public Animator attackAnimator;
 	void FixedUpdate()
 	{
 		look4target();
@@ -56,8 +61,18 @@ public class turretRegular : MonoBehaviour
 
 	void shoot()
 	{
+		if (shootAnim)
+        {
+			attackAnimator.SetTrigger("fire");
+
+		}
 		canShoot = false;
 		Instantiate(bullet, shootSpot1.position, shootSpot1.rotation);
+		if (tripleCannon)
+        {
+			Instantiate(bullet, shootSpot2.position, shootSpot2.rotation);
+			Instantiate(bullet, shootSpot3.position, shootSpot3.rotation);
+		}
 		StartCoroutine(Reload());
 
 	}

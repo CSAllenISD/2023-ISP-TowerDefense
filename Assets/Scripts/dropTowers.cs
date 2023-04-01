@@ -2,7 +2,8 @@
   using System.Collections.Generic;
   using UnityEngine;
   using UnityEngine.UI;
-  public class dropTowers : MonoBehaviour
+using UnityEngine.EventSystems;
+public class dropTowers : MonoBehaviour
   {
     public GameObject pauseMenu;
       public Camera nonVRCamera;
@@ -12,7 +13,8 @@
       public GameObject tower2;
     public MeshRenderer ghost2Radius;
     public GameObject tower3;
-     public GameObject tower4;
+    public MeshRenderer ghost3Radius;
+    public GameObject tower4;
      public GameObject tower4ghost;
       public GameObject tower3ghost;
       public GameObject tower2ghost;
@@ -27,8 +29,13 @@
     public bool superCanPlace;
      public Material[] ghostMaterials;
     public Transform RotationPlacement;
-    //  public selectScript idk;
-     playerStats playerStats;
+      public selectScript idk;
+    public float yOffSetTower1;
+    public float yOffSetTower3;
+    public int t1Cost;
+    public int t2Cost;
+    public int t3Cost;
+    playerStats playerStats;
      void Start()
      {
         RotationPlacement = tower1.transform;
@@ -147,28 +154,62 @@
                 }
                 tower3ghost.SetActive(false);
             }
+
             if (TowerNumber == 3)
             {
-                RaycastHit hoat;
-                Ray roya = nonVRCamera.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(roya, out hoat, 1000f, ~IgnoreMe))
+                tower3ghost.SetActive(true);
+                RaycastHit het;
+                Ray rey = nonVRCamera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(rey, out het, 1000f, ~IgnoreMe))
                 {
-                    if (hoat.transform.name == "floor")
+                    if (het.transform.name == "floor")
                     {
                         tower3ghost.SetActive(true);
-                        tower3ghost.transform.position = hoat.point;
-                        //              SpriteRenderer spriteR = tower3ghost.GetComponent<SpriteRenderer>();
-                        //  spriteR.color = Color.white;
+                        tower3ghost.transform.position = het.point;
+                        canPlace = true;
+                        Collider[] hitColliders = Physics.OverlapSphere(het.point, placeRadius2);
+
+                        foreach (var hitCollider in hitColliders)
+                        {
+                            if (hitCollider.transform.gameObject.tag == "tower")
+                            {
+                                canPlace = false;
+                            }
+                        }
+                        if (canPlace == true)
+                        {
+                            superCanPlace = true;
+                        }
+                        else
+                        {
+                            superCanPlace = false;
+                        }
+                        if (superCanPlace)
+                        {
+                            ghost3Radius.material = ghostMaterials[1];
+                        }
+                        else
+                        {
+                            ghost3Radius.material = ghostMaterials[0];
+                        }
+                        //                 SpriteRenderer spriteR = tower1ghost.GetComponent<SpriteRenderer>();
+                        //   spriteR.color = Color.white;
                     }
-                    if (hoat.transform.name != "floor")
+                    if (het.transform.name != "floor")
                     {
                         tower3ghost.SetActive(true);
-                        //  tower3ghost.transform.position = hoat.point;
-                        //  SpriteRenderer spriteR = tower3ghost.GetComponent<SpriteRenderer>();
-                        // spriteR.color = Color.red;
+                        tower3ghost.transform.position = het.point;
+                        ghost3Radius.material = ghostMaterials[0];
+                        //   SpriteRenderer spriteR = tower1ghost.GetComponent<SpriteRenderer>();
+                        //   spriteR.color = Color.red;
                     }
                 }
+
+
             }
+
+
+
 
             if (TowerNumber != 4)
             {
@@ -267,19 +308,20 @@
             }
             if (Input.GetMouseButtonDown(0) && TowerNumber == 0)
             {
-                //             if (idk != null)
-                //    {
-                //     idk.deselect();
-                //        
-                //       }
+                       
                 RaycastHit hen;
                 Ray ren = nonVRCamera.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(ren, out hen, 1000f, ~IgnoreMe))
+                if (Physics.Raycast(ren, out hen, 1000f))
                 {
+                    if (!EventSystem.current.IsPointerOverGameObject() && idk != null)
+                    {
+                        idk.deselect();
+
+                       }
                     if (hen.transform.tag == "tower" || hen.transform.tag == "temple")
                     {
-                        //           idk = hen.transform.gameObject.GetComponent<selectScript>();
-                        //          idk.select();
+                                   idk = hen.transform.gameObject.GetComponent<selectScript>();
+                                  idk.select();
                     }
                 }
             }
@@ -288,22 +330,22 @@
                 RaycastHit hit;
                 Ray ray = nonVRCamera.ScreenPointToRay(Input.mousePosition);
 
-                if (Physics.Raycast(ray, out hit, 1000f, ~IgnoreMe))
+                if (Physics.Raycast(ray, out hit, 1000f))
                 {
 
 
                     if (hit.transform.name == "floor")
                     {
-                        // if (idk != null)
-                        //   {
-                        //   idk.deselect();
-                        //      }
+                         if (idk != null)
+                           {
+                           idk.deselect();
+                              }
                         if (TowerNumber == 1 && superCanPlace == true)
                         {
-
-                            GameObject towers = Instantiate(tower1, hit.point, RotationPlacement.rotation);
+                            Vector3 placePosition = new Vector3(hit.point.x, hit.point.y + yOffSetTower1, hit.point.z);
+                            GameObject towers = Instantiate(tower1, placePosition, RotationPlacement.rotation);
                             towers.SetActive(true);
-                            playerStats.addCash(-215);
+                            playerStats.addCash(-t1Cost);
                             superCanPlace = false;
                             TowerNumber = 0;
                         }
@@ -311,14 +353,16 @@
                         {
                             GameObject towers = Instantiate(tower2, hit.point, RotationPlacement.rotation);
                             towers.SetActive(true);
-                            playerStats.addCash(-250);
+                            playerStats.addCash(-t2Cost);
                             TowerNumber = 0;
 
                         }
                         if (TowerNumber == 3)
                         {
-                            GameObject towers = Instantiate(tower3, hit.point, Quaternion.identity);
+                            Vector3 placePosition = new Vector3(hit.point.x, hit.point.y + yOffSetTower3, hit.point.z);
+                            GameObject towers = Instantiate(tower3, placePosition, RotationPlacement.rotation);
                             towers.SetActive(true);
+                            playerStats.addCash(-t3Cost);
                             TowerNumber = 0;
                         }
                         if (TowerNumber == 4)

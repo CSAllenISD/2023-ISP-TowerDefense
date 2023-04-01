@@ -30,6 +30,10 @@ public class WaveSpawner : MonoBehaviour
     public GameManager gameManager;
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartRound();
+        }
         if (EnemiesAlive > 0)
         {
             return;
@@ -41,7 +45,7 @@ public class WaveSpawner : MonoBehaviour
             this.enabled = false;
         }
 
-        if ((countdown <= 0f) && (Bob == 1))
+            if ((countdown <= 0f) && ((Bob == 1) || PlayerPrefs.HasKey("autoStart") && PlayerPrefs.GetInt("autoStart") == 1))
         {
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;

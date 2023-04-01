@@ -8,6 +8,8 @@ TagManager:
   - statistics
   - Placeable
   - tower
+  - shop
+  - hidden
   layers:
   - Default
   - TransparentFX

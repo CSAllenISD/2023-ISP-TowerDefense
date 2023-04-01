@@ -12,6 +12,7 @@ public class selectScript : MonoBehaviour
 	public Button button2;
 	public int pricetop = 0;
 	public int pricebottom = 0;
+	public int sellValue;
 	public playerStats fortnite;
 	void Start()
 	{
@@ -65,6 +66,11 @@ public class selectScript : MonoBehaviour
 		Instantiate(BottomPath, transform.position, transform.rotation);
 		Destroy(gameObject);
 	}
+	public void sell()
+    {
+		fortnite.addCash(sellValue);
+		Destroy(gameObject);
+    }
 	IEnumerator deselectThing()
 	{
 		yield return new WaitForSeconds(0.1f);

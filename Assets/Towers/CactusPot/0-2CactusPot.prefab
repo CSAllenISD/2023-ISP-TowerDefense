@@ -643,7 +643,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 9151801610851903632}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7698145137553486476}
+        m_MethodName: sell
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2189342401442240812
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,7 +2272,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Sell For: $1,000'
+  m_text: 'Sell For: $207'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2795,6 +2806,8 @@ MonoBehaviour:
   shootSpot1: {fileID: 7819203968534683254}
   enemy: {fileID: 0}
   seeHidden: 1
+  shootAnim: 0
+  attackAnimator: {fileID: 0}
 --- !u!136 &432484577027256185
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2827,8 +2840,9 @@ MonoBehaviour:
   BottomPath: {fileID: 0}
   button1: {fileID: 6916833081125746764}
   button2: {fileID: 1780889758775771739}
-  pricetop: 50
+  pricetop: 150
   pricebottom: 50
+  sellValue: 207
   fortnite: {fileID: 0}
 --- !u!1 &9068172489577514981
 GameObject:
@@ -2894,7 +2908,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '$50
+  m_text: '$150
 
     Sharper Spines'
   m_isRightToLeft: 0

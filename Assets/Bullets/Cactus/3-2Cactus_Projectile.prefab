@@ -429,6 +429,7 @@ MonoBehaviour:
   Pos4: {fileID: 8143715331378499951}
   secondShot: {fileID: 8601523044140583313, guid: b4c3524d8cef76f4c9d53bdc1c183f45,
     type: 3}
+  hitHidden: 1
 --- !u!135 &3750236449590663883
 SphereCollider:
   m_ObjectHideFlags: 0

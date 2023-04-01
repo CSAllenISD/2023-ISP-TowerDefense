@@ -45,52 +45,20 @@ public class enemy : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-
-        if (isMoab != true)
-        {
-            if (amount > health && health > 0)
-            {
-                playerStats.addCash(health);
-            }
-            else if (amount < health)
-            {
-                playerStats.addCash(amount);
-            }
-            else if (amount > health && health < 0)
-            {
-                playerStats.addCash(1);
-            }
-
-            health -= amount;
+        health -= amount;
+        
         //    Instantiate(Popsound, ParentTransform.position, Quaternion.identity);
-
-
             if (health <= 0 && isDead == false)
             {
                 isDead = true;
-           //     Instantiate(Popsound, ParentTransform.position, Quaternion.identity);
-
                 Die();
             }
-        }
-        if (isMoab == true)
-        {
-            if (isCeramic)
-            {
-         //       Instantiate(Popsound, ParentTransform.position, Quaternion.identity);
-
-            }
-            health -= amount;
-
-        }
     }
 
     void Die()
     {
         if (health <= 0)
         {
-         //   Instantiate(Popsound, ParentTransform.position, Quaternion.identity);
-
             wavething = wavepointIndex;
             if (isMoab == true)
             {

@@ -590,7 +590,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '$50
+  m_text: '$35
 
     Taller
 
@@ -905,7 +905,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Sell For: $1,000'
+  m_text: 'Sell For: $392'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1126,6 +1126,9 @@ MonoBehaviour:
   bullet: {fileID: 2968728785994909074, guid: fc7ec11c15910d94a89e476c0aa615f7, type: 3}
   shootSpot1: {fileID: 4274361467671411149}
   enemy: {fileID: 0}
+  seeHidden: 0
+  shootAnim: 0
+  attackAnimator: {fileID: 0}
 --- !u!136 &3505609024105300329
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1160,7 +1163,8 @@ MonoBehaviour:
   button1: {fileID: 5004691480809191851}
   button2: {fileID: 5619699708128889306}
   pricetop: 50
-  pricebottom: 50
+  pricebottom: 35
+  sellValue: 392
   fortnite: {fileID: 0}
 --- !u!1 &3207151147488662484
 GameObject:
@@ -2208,7 +2212,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5458214115961963041}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3718553093193560871}
+        m_MethodName: sell
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8069190258821932181
 GameObject:
   m_ObjectHideFlags: 0

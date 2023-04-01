@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class playerStats : MonoBehaviour
 {
-    public Text cashText;
-    public Text livesText;
+    public TMP_Text cashText;
+    public TMP_Text livesText;
     public Button DartMonkey;
     public Button TackShooter;
 
@@ -17,25 +18,26 @@ public class playerStats : MonoBehaviour
     public int startLives = 20;
 
     public static int Rounds;
+    public int t1Cost;
     void Start()
     {
         Rounds = 0;
         cash = startMoney;
         lives = startLives;
-        //   livesText.text = "Lives: " + lives;
-        //      cashText.text = "Cash: $" + cash;
+           livesText.text = "Lives: " + lives;
+              cashText.text = "$" + cash;
     }
 
 
     void Update()
     {
-        if (cash < 215)
+        if (cash < t1Cost)
         {
-         //   DartMonkey.interactable = false;
+            DartMonkey.interactable = false;
         }
-        if (cash >= 215)
+        if (cash >= t1Cost)
         {
-       //     DartMonkey.interactable = true;
+            DartMonkey.interactable = true;
         }
 
         if (cash < 250)
@@ -50,12 +52,16 @@ public class playerStats : MonoBehaviour
     public void addCash(int money)
     {
         cash += money;
-      //  cashText.text = "Cash: $" + cash;
+        cashText.text = "Cash: $" + cash;
     }
     public void loseLife(int hp)
     {
         lives -= hp;
-     //   livesText.text = "Lives: " + lives;
+        if (hp < 0)
+        {
+            hp = 0;
+        }
+        livesText.text = "Lives: " + lives;
     }
 
 }

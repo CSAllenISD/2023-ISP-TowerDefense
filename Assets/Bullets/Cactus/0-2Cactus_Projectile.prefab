@@ -143,6 +143,7 @@ MonoBehaviour:
   Pos3: {fileID: 0}
   Pos4: {fileID: 0}
   secondShot: {fileID: 0}
+  hitHidden: 1
 --- !u!54 &7902195996718628905
 Rigidbody:
   m_ObjectHideFlags: 0
