@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class selectScript : MonoBehaviour
 {
+	public GameObject sellFX;
 	public GameObject range;
 	public GameObject UI;
 	public GameObject TopPath;
@@ -69,6 +70,7 @@ public class selectScript : MonoBehaviour
 	public void sell()
     {
 		pstats.addCash(sellValue);
+		Instantiate(sellFX, transform.position, transform.rotation);
 		Destroy(gameObject);
     }
 	IEnumerator deselectThing()

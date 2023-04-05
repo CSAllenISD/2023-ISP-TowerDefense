@@ -16,7 +16,8 @@ public class dropTowers : MonoBehaviour
     public MeshRenderer ghost3Radius;
     public GameObject tower4;
      public GameObject tower4ghost;
-      public GameObject tower3ghost;
+    public MeshRenderer ghost4Radius;
+    public GameObject tower3ghost;
       public GameObject tower2ghost;
       public int TowerNumber;
       private Vector3 mousePosition;
@@ -32,9 +33,11 @@ public class dropTowers : MonoBehaviour
       public selectScript idk;
     public float yOffSetTower1;
     public float yOffSetTower3;
+    public float yOffSetTower4;
     public int t1Cost;
     public int t2Cost;
     public int t3Cost;
+    public int t4Cost;
     playerStats playerStats;
      void Start()
      {
@@ -219,27 +222,58 @@ public class dropTowers : MonoBehaviour
                 }
                 tower4ghost.SetActive(false);
             }
+
             if (TowerNumber == 4)
             {
-                RaycastHit howat;
-                Ray roaya = nonVRCamera.ScreenPointToRay(Input.mousePosition);
-                if (Physics.Raycast(roaya, out howat, 1000f, ~IgnoreMe))
+                tower4ghost.SetActive(true);
+                RaycastHit het;
+                Ray rey = nonVRCamera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(rey, out het, 1000f, ~IgnoreMe))
                 {
-                    if (howat.transform.name == "floor")
+                    if (het.transform.name == "floor")
                     {
                         tower4ghost.SetActive(true);
-                        tower4ghost.transform.position = howat.point;
-                        //                SpriteRenderer spriteR = tower4ghost.GetComponent<SpriteRenderer>();
+                        tower4ghost.transform.position = het.point;
+                        canPlace = true;
+                        Collider[] hitColliders = Physics.OverlapSphere(het.point, placeRadius2);
+
+                        foreach (var hitCollider in hitColliders)
+                        {
+                            if (hitCollider.transform.gameObject.tag == "tower")
+                            {
+                                canPlace = false;
+                            }
+                        }
+                        if (canPlace == true)
+                        {
+                            superCanPlace = true;
+                        }
+                        else
+                        {
+                            superCanPlace = false;
+                        }
+                        if (superCanPlace)
+                        {
+                            ghost4Radius.material = ghostMaterials[1];
+                        }
+                        else
+                        {
+                            ghost4Radius.material = ghostMaterials[0];
+                        }
+                        //                 SpriteRenderer spriteR = tower1ghost.GetComponent<SpriteRenderer>();
                         //   spriteR.color = Color.white;
                     }
-                    if (howat.transform.name != "floor")
+                    if (het.transform.name != "floor")
                     {
                         tower4ghost.SetActive(true);
-                        //   tower4ghost.transform.position = howat.point;
-                        //   SpriteRenderer spriteR = tower4ghost.GetComponent<SpriteRenderer>();
+                        tower4ghost.transform.position = het.point;
+                        ghost4Radius.material = ghostMaterials[0];
+                        //   SpriteRenderer spriteR = tower1ghost.GetComponent<SpriteRenderer>();
                         //   spriteR.color = Color.red;
                     }
                 }
+
+
             }
 
 
@@ -367,8 +401,10 @@ public class dropTowers : MonoBehaviour
                         }
                         if (TowerNumber == 4)
                         {
-                            GameObject towers = Instantiate(tower4, hit.point, Quaternion.identity);
+                            Vector3 placePosition = new Vector3(hit.point.x, hit.point.y + yOffSetTower4, hit.point.z);
+                            GameObject towers = Instantiate(tower4, placePosition, RotationPlacement.rotation);
                             towers.SetActive(true);
+                            playerStats.addCash(-t4Cost);
                             TowerNumber = 0;
                         }
                     }

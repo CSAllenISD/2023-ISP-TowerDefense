@@ -14,7 +14,7 @@ public class enemy : MonoBehaviour
     public bool isCeramic;
     public int wavething = 0;
     public int health = 4;
-
+    
 
     public int value = 10;
 
@@ -34,9 +34,10 @@ public class enemy : MonoBehaviour
     public bool isStefano = true;
     public bool isDead = false;
     public int RBE = 1;
+    public float normalSpeed;
     void Start()
     {
-
+        normalSpeed = speed;
         GameObject scriptthing = GameObject.FindWithTag("statistics");
         playerStats = scriptthing.GetComponent<playerStats>();
         target = waypoint.points[wavepointIndex];
@@ -181,19 +182,28 @@ public class enemy : MonoBehaviour
     {
         if (isMoab == false)
         {
-            if (speed != 0)
-            {
-                tempSpeed = speed;
+            
+                StopAllCoroutines();
                 speed = 0f;
                 StartCoroutine(regularspeed(time));
-            }
+            
+        }
+    }
+    public void slow(float time)
+    {
+        if (isMoab == false)
+        {
+            StopAllCoroutines();
+            speed = normalSpeed/2;
+                StartCoroutine(regularspeed(time));
+            
         }
     }
 
     IEnumerator regularspeed(float time)
     {
         yield return new WaitForSeconds(time);
-        speed = tempSpeed;
+        speed = normalSpeed;
     }
     public void backwards(float time)
     {
@@ -201,8 +211,8 @@ public class enemy : MonoBehaviour
         {
             if (speed >= 0)
             {
-                tempSpeed = speed;
-                speed = -1 * tempSpeed;
+                StopAllCoroutines();
+                speed = -1 * normalSpeed;
                 StartCoroutine(regularspeed(time));
             }
         }

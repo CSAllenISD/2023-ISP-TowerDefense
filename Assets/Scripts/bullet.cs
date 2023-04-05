@@ -22,6 +22,8 @@ public class bullet : MonoBehaviour
     public Transform Pos4;
     public GameObject secondShot;
     public bool hitHidden = false;
+    public bool slow = false;
+    public bool kb = false;
     void Start()
     {
         if (minigun == false)
@@ -51,7 +53,18 @@ public class bullet : MonoBehaviour
                     {
                         var enemy = collider.gameObject.GetComponent<enemy>();
                         enemy.TakeDamage(explosionDamage);
-
+                        if (slow)
+                        {
+                            enemy.slow(freezetime);
+                        }
+                        if (stunShot == true)
+                        {
+                            enemy.freeze(freezetime);
+                        }
+                        if (kb)
+                        {
+                            enemy.backwards(freezetime);
+                        }
                     }
                 }
             }
@@ -114,6 +127,15 @@ public class bullet : MonoBehaviour
                 {
                     enemy.freeze(freezetime);
                 }
+                if (slow)
+                {
+                    enemy.slow(freezetime);
+                }
+                if (kb)
+                {
+                    enemy.backwards(freezetime);
+                }
+
             }
         }
     }
