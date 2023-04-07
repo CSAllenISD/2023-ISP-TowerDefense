@@ -71,7 +71,10 @@ public class turretRegular : MonoBehaviour
 		if (tripleCannon)
         {
 			Instantiate(bullet, shootSpot2.position, shootSpot2.rotation);
-			Instantiate(bullet, shootSpot3.position, shootSpot3.rotation);
+			if (shootSpot3 != null)
+			{
+				Instantiate(bullet, shootSpot3.position, shootSpot3.rotation);
+			}
 		}
 		StartCoroutine(Reload());
 

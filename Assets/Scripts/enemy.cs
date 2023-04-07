@@ -35,13 +35,15 @@ public class enemy : MonoBehaviour
     public bool isDead = false;
     public int RBE = 1;
     public float normalSpeed;
+    public float poisonValue = 0;
+    public float pCounter;
     void Start()
     {
         normalSpeed = speed;
         GameObject scriptthing = GameObject.FindWithTag("statistics");
         playerStats = scriptthing.GetComponent<playerStats>();
         target = waypoint.points[wavepointIndex];
-
+        pCounter = 0.01f;
     }
 
     public void TakeDamage(int amount)
@@ -137,6 +139,19 @@ public class enemy : MonoBehaviour
         }
 
     }
+    void FixedUpdate()
+    {
+        if (poisonValue > 0)
+        {
+
+            pCounter -= Time.deltaTime;
+            if (pCounter <= 0)
+            {
+                TakeDamage(1);
+                pCounter = poisonValue;
+            }
+        }
+    }
     void GetNextWaypoint()
     {
         if (wavepointIndex >= waypoint.points.Length - 1)
@@ -217,5 +232,6 @@ public class enemy : MonoBehaviour
             }
         }
     }
+    
 }
 

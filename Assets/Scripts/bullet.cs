@@ -24,6 +24,7 @@ public class bullet : MonoBehaviour
     public bool hitHidden = false;
     public bool slow = false;
     public bool kb = false;
+    public float poisonValue = 0;
     void Start()
     {
         if (minigun == false)
@@ -135,7 +136,7 @@ public class bullet : MonoBehaviour
                 {
                     enemy.backwards(freezetime);
                 }
-
+                    enemy.poisonValue = poisonValue;
             }
         }
     }
