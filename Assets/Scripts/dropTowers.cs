@@ -17,6 +17,9 @@ public class dropTowers : MonoBehaviour
     public GameObject tower4;
      public GameObject tower4ghost;
     public MeshRenderer ghost4Radius;
+    public GameObject tower5;
+    public GameObject tower5ghost;
+    public MeshRenderer ghost5Radius;
     public GameObject tower3ghost;
       public GameObject tower2ghost;
       public int TowerNumber;
@@ -27,6 +30,7 @@ public class dropTowers : MonoBehaviour
      public bool canPlace;
      public float placeRadius;
     public float placeRadius2;
+    public float placeRadius5;
     public bool superCanPlace;
      public Material[] ghostMaterials;
     public Transform RotationPlacement;
@@ -34,10 +38,12 @@ public class dropTowers : MonoBehaviour
     public float yOffSetTower1;
     public float yOffSetTower3;
     public float yOffSetTower4;
+    public float yOffSetTower5;
     public int t1Cost;
     public int t2Cost;
     public int t3Cost;
     public int t4Cost;
+    public int t5Cost;
     playerStats playerStats;
      void Start()
      {
@@ -279,6 +285,76 @@ public class dropTowers : MonoBehaviour
 
 
 
+
+            if (TowerNumber != 5)
+            {
+                if (tower5ghost.activeSelf)
+                {
+                    tower5ghost.transform.position = ghostArea.position;
+                }
+                tower5ghost.SetActive(false);
+            }
+
+            if (TowerNumber == 5)
+            {
+                tower5ghost.SetActive(true);
+                RaycastHit het;
+                Ray rey = nonVRCamera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(rey, out het, 1000f, ~IgnoreMe))
+                {
+                    if (het.transform.name == "floor")
+                    {
+                        tower5ghost.SetActive(true);
+                        tower5ghost.transform.position = het.point;
+                        canPlace = true;
+                        Collider[] hitColliders = Physics.OverlapSphere(het.point, placeRadius5);
+
+                        foreach (var hitCollider in hitColliders)
+                        {
+                            if (hitCollider.transform.gameObject.tag == "tower")
+                            {
+                                canPlace = false;
+                            }
+                        }
+                        if (canPlace == true)
+                        {
+                            superCanPlace = true;
+                        }
+                        else
+                        {
+                            superCanPlace = false;
+                        }
+                        if (superCanPlace)
+                        {
+                            ghost5Radius.material = ghostMaterials[1];
+                        }
+                        else
+                        {
+                            ghost5Radius.material = ghostMaterials[0];
+                        }
+                        //                 SpriteRenderer spriteR = tower1ghost.GetComponent<SpriteRenderer>();
+                        //   spriteR.color = Color.white;
+                    }
+                    if (het.transform.name != "floor")
+                    {
+                        tower5ghost.SetActive(true);
+                        tower5ghost.transform.position = het.point;
+                        ghost5Radius.material = ghostMaterials[0];
+                        //   SpriteRenderer spriteR = tower1ghost.GetComponent<SpriteRenderer>();
+                        //   spriteR.color = Color.red;
+                    }
+                }
+
+
+            }
+
+
+
+
+
+
+
+
             if (TowerNumber != 1)
             {
                 if (tower1ghost.activeSelf)
@@ -405,6 +481,14 @@ public class dropTowers : MonoBehaviour
                             GameObject towers = Instantiate(tower4, placePosition, RotationPlacement.rotation);
                             towers.SetActive(true);
                             playerStats.addCash(-t4Cost);
+                            TowerNumber = 0;
+                        }
+                        if (TowerNumber == 5)
+                        {
+                            Vector3 placePosition = new Vector3(hit.point.x, hit.point.y + yOffSetTower5, hit.point.z);
+                            GameObject towers = Instantiate(tower5, placePosition, RotationPlacement.rotation);
+                            towers.SetActive(true);
+                            playerStats.addCash(-t5Cost);
                             TowerNumber = 0;
                         }
                     }

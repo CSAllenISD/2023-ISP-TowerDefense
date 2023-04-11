@@ -11,6 +11,7 @@ TagManager:
   - shop
   - hidden
   - waveSpawner
+  - MusicAnimation
   layers:
   - Default
   - TransparentFX

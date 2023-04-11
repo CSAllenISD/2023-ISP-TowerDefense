@@ -195,7 +195,7 @@ public class enemy : MonoBehaviour
 
     public void freeze(float time)
     {
-        if (isMoab == false)
+        if (isMoab == false && isRainbow == false)
         {
             
                 StopAllCoroutines();
@@ -206,7 +206,7 @@ public class enemy : MonoBehaviour
     }
     public void slow(float time)
     {
-        if (isMoab == false)
+        if (isMoab == false && speed > 0f && isRainbow == false)
         {
             StopAllCoroutines();
             speed = normalSpeed/2;
@@ -222,7 +222,7 @@ public class enemy : MonoBehaviour
     }
     public void backwards(float time)
     {
-        if (isMoab == false)
+        if (isMoab == false && isRainbow == false)
         {
             if (speed >= 0)
             {

@@ -63,6 +63,10 @@ MonoBehaviour:
   Pos3: {fileID: 0}
   Pos4: {fileID: 0}
   secondShot: {fileID: 0}
+  hitHidden: 0
+  slow: 0
+  kb: 0
+  poisonValue: 0
 --- !u!54 &5667319544317412074
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -117,13 +121,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7949609026672869329}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 75.78429, y: 81.634834, z: 75.78429}
   m_Children: []
   m_Father: {fileID: 5038839370134280274}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!33 &5334702762232782450
 MeshFilter:
   m_ObjectHideFlags: 0

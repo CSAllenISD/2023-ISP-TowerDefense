@@ -13,6 +13,8 @@ public class turretRegular : MonoBehaviour
 	public Transform shootSpot1;
 	public Transform shootSpot2;
 	public Transform shootSpot3;
+	public Transform shootSpot4;
+	public Transform shootSpot5;
 	GameObject nearestEnemy = null;
 	public GameObject enemy = null;
 	public bool seeHidden = false;
@@ -74,7 +76,13 @@ public class turretRegular : MonoBehaviour
 			if (shootSpot3 != null)
 			{
 				Instantiate(bullet, shootSpot3.position, shootSpot3.rotation);
+				if (shootSpot4 != null)
+				{
+					Instantiate(bullet, shootSpot4.position, shootSpot4.rotation);
+					Instantiate(bullet, shootSpot5.position, shootSpot5.rotation);
+				}
 			}
+
 		}
 		StartCoroutine(Reload());
 

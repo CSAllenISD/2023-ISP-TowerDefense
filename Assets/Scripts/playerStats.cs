@@ -11,6 +11,7 @@ public class playerStats : MonoBehaviour
     public Button music;
     public Button cannon;
     public Button snow;
+    public Button spider;
     public static int cash;
     public int startMoney = 300;
 
@@ -19,8 +20,10 @@ public class playerStats : MonoBehaviour
 
     public static int Rounds;
     public int t1Cost;
+    public int t2Cost;
     public int t3Cost;
     public int t4Cost;
+    public int t5Cost;
     void Start()
     {
         Rounds = 0;
@@ -37,9 +40,17 @@ public class playerStats : MonoBehaviour
         {
             DartMonkey.interactable = false;
         }
-        if (cash >= t1Cost)
+        if (cash >= t2Cost)
         {
             DartMonkey.interactable = true;
+        }
+        if (cash < t1Cost)
+        {
+            music.interactable = false;
+        }
+        if (cash >= t2Cost)
+        {
+            music.interactable = true;
         }
         if (cash < t3Cost)
         {
@@ -56,6 +67,14 @@ public class playerStats : MonoBehaviour
         if (cash >= t4Cost)
         {
             snow.interactable = true;
+        }
+        if (cash < t5Cost)
+        {
+            spider.interactable = false;
+        }
+        if (cash >= t5Cost)
+        {
+            spider.interactable = true;
         }
         if (cash < 250)
         {

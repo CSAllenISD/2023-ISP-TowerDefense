@@ -202,7 +202,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 31603469}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 755454551}
+        m_MethodName: loadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StoryTest
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &31603469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2202,6 +2213,7 @@ GameObject:
   - component: {fileID: 755454549}
   - component: {fileID: 755454548}
   - component: {fileID: 755454547}
+  - component: {fileID: 755454551}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2289,6 +2301,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &755454551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755454546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f257a226ffb3eb4097901ef48f2b046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &800956072
 GameObject:
   m_ObjectHideFlags: 0
@@ -3141,7 +3165,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1260609963}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 755454551}
+        m_MethodName: loadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: SampleScene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1260609963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5213,6 +5248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7bacb2c4a9067241a2ac9fae247c92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sellFX: {fileID: 0}
   range: {fileID: 510956602}
   UI: {fileID: 610212095}
   TopPath: {fileID: 7802201730521942279, guid: 0e763739960533145985cb961ad176ad, type: 3}
@@ -5222,7 +5258,8 @@ MonoBehaviour:
   button2: {fileID: 1968322920}
   pricetop: 50
   pricebottom: 50
-  fortnite: {fileID: 0}
+  sellValue: 0
+  pstats: {fileID: 0}
 --- !u!136 &2099409448
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5255,9 +5292,14 @@ MonoBehaviour:
   radius: 11
   bullet: {fileID: 4410791716863132787, guid: 7a140ea5531520c4a89abe488d967747, type: 3}
   shootSpot1: {fileID: 924375104}
+  shootSpot2: {fileID: 0}
+  shootSpot3: {fileID: 0}
+  shootSpot4: {fileID: 0}
+  shootSpot5: {fileID: 0}
   enemy: {fileID: 0}
   seeHidden: 0
   shootAnim: 1
+  tripleCannon: 0
   attackAnimator: {fileID: 2099409446}
 --- !u!4 &2099409450
 Transform:
@@ -6294,6 +6336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7bacb2c4a9067241a2ac9fae247c92c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sellFX: {fileID: 0}
   range: {fileID: 3318863155088362133}
   UI: {fileID: 8715485030806555481}
   TopPath: {fileID: 7802201730521942279, guid: 0e763739960533145985cb961ad176ad, type: 3}
@@ -6303,7 +6346,8 @@ MonoBehaviour:
   button2: {fileID: 5182994572366467518}
   pricetop: 50
   pricebottom: 50
-  fortnite: {fileID: 0}
+  sellValue: 0
+  pstats: {fileID: 0}
 --- !u!224 &3265776984156176405
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6851,9 +6895,14 @@ MonoBehaviour:
   radius: 11
   bullet: {fileID: 4410791716863132787, guid: 7a140ea5531520c4a89abe488d967747, type: 3}
   shootSpot1: {fileID: 3318863155631152668}
+  shootSpot2: {fileID: 0}
+  shootSpot3: {fileID: 0}
+  shootSpot4: {fileID: 0}
+  shootSpot5: {fileID: 0}
   enemy: {fileID: 0}
   seeHidden: 0
   shootAnim: 0
+  tripleCannon: 0
   attackAnimator: {fileID: 0}
 --- !u!1 &4517005543908994350
 GameObject:

@@ -12,15 +12,21 @@ public class homingBullet : MonoBehaviour
 	public int pierce = 1;
 	public int damage = 1;
 	public float lifetime = 5f;
-	public bool canHome = true;
+	//public bool canHome = true;
 	GameObject nearestEnemy = null;
 	public GameObject enemy = null;
 	public float homeTimer;
 	public float maxTime;
-
+	public List<GameObject> hitEnemies;
+	public bool stunShot = false;
+	public int stunChance = 0;
 	void Start()
 	{
 		StartCoroutine(die());
+		if (Random.Range(0, 10) < stunChance)
+        {
+			stunShot = true;
+        }
 	}
 	void Update()
 	{
@@ -33,7 +39,7 @@ public class homingBullet : MonoBehaviour
 	}
 	void FixedUpdate()
 	{
-		if (!canHome)
+		/*if (!canHome)
         {
 			homeTimer -= Time.deltaTime;
 			if (homeTimer <= 0)
@@ -42,9 +48,10 @@ public class homingBullet : MonoBehaviour
 				canHome = true;
             }
         }
+		*/
 		look4target();
 
-		if (target != null && canHome)
+		if (target != null)
 		{
 
 
@@ -58,15 +65,31 @@ public class homingBullet : MonoBehaviour
 	void look4target()
 	{
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag("enemy");
+		GameObject[] hiddenEnemies = GameObject.FindGameObjectsWithTag("hidden");
 		float shortestDistance = Mathf.Infinity;
 
 		foreach (GameObject enemy in enemies)
 		{
-			float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-			if (distanceToEnemy < shortestDistance)
+			if (!ArrayContains(hitEnemies, enemy))
 			{
-				shortestDistance = distanceToEnemy;
-				nearestEnemy = enemy;
+				float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+				if (distanceToEnemy < shortestDistance)
+				{
+					shortestDistance = distanceToEnemy;
+					nearestEnemy = enemy;
+				}
+			}
+		}
+		foreach (GameObject enemy in hiddenEnemies)
+		{
+			if (!ArrayContains(hitEnemies, enemy))
+			{
+				float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+				if (distanceToEnemy < shortestDistance)
+				{
+					shortestDistance = distanceToEnemy;
+					nearestEnemy = enemy;
+				}
 			}
 		}
 		if (nearestEnemy != null)
@@ -80,13 +103,29 @@ public class homingBullet : MonoBehaviour
 	}
 	void OnTriggerEnter(Collider thing)
 	{
-		if (thing.tag == "enemy")
+		if (thing.tag == "enemy" || thing.tag == "hidden")
 		{
+			var enemy = thing.gameObject.GetComponent<enemy>();
+			if (enemy.isRainbow)
+			{
+				Destroy(gameObject);
+			}
+			hitEnemies.Add(thing.gameObject);
+			hitEnemies.Add(thing.transform.parent.gameObject);
 			pierce -= 1;
 			Debug.Log("hit");
-			var enemy = thing.gameObject.GetComponent<enemy>();
-			enemy.TakeDamage(damage);
-			canHome = false;
+			if (pierce >= 0)
+			{
+				enemy.TakeDamage(damage);
+
+				if (stunShot == true)
+				{
+					enemy.freeze(5f);
+				}
+			}
+			//canHome = false;
+			nearestEnemy = null;
+			target = null;
 		}
 	}
 
@@ -95,5 +134,13 @@ public class homingBullet : MonoBehaviour
 
 		yield return new WaitForSeconds(lifetime);
 		Destroy(gameObject);
+	}
+	bool ArrayContains(List<GameObject> array, GameObject g)
+	{
+		for (int i = 0; i < array.Count; i++)
+		{
+			if (array[i] == g) return true;
+		}
+		return false;
 	}
 }
