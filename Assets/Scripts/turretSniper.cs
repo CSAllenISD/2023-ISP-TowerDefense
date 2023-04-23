@@ -18,6 +18,9 @@ public class turretSniper : MonoBehaviour
 	public Animator attackAnimator;
 	public int damage;
 	public float explosionRadius;
+	public bool slow = false;
+	public bool freeze = false;
+	public float slowTime = 0f;
 	void FixedUpdate()
 	{
 		look4target();
@@ -81,6 +84,18 @@ public class turretSniper : MonoBehaviour
 
 					}
 				}
+			} else
+            {
+				var enemy = target.gameObject.transform.GetChild(0).GetComponent<enemy>();
+				enemy.TakeDamage(damage);
+				if (slow)
+                {
+					enemy.slow(slowTime);
+
+				} if (freeze)
+                {
+					enemy.freeze(slowTime);
+                }
 			}
 			StartCoroutine(Reload());
 		}

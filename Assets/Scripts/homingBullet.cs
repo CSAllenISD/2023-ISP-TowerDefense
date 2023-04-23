@@ -20,6 +20,7 @@ public class homingBullet : MonoBehaviour
 	public List<GameObject> hitEnemies;
 	public bool stunShot = false;
 	public int stunChance = 0;
+	public float poisonValue = 0;
 	void Start()
 	{
 		StartCoroutine(die());
@@ -123,6 +124,7 @@ public class homingBullet : MonoBehaviour
 					enemy.freeze(5f);
 				}
 			}
+			enemy.poisonValue = poisonValue;
 			//canHome = false;
 			nearestEnemy = null;
 			target = null;

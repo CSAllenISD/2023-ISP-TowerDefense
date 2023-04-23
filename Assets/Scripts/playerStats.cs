@@ -12,6 +12,8 @@ public class playerStats : MonoBehaviour
     public Button cannon;
     public Button snow;
     public Button spider;
+    public Button star;
+    public Button sniper;
     public static int cash;
     public int startMoney = 300;
 
@@ -24,6 +26,8 @@ public class playerStats : MonoBehaviour
     public int t3Cost;
     public int t4Cost;
     public int t5Cost;
+    public int t6Cost;
+    public int t7Cost;
     void Start()
     {
         Rounds = 0;
@@ -75,6 +79,22 @@ public class playerStats : MonoBehaviour
         if (cash >= t5Cost)
         {
             spider.interactable = true;
+        }
+        if (cash < t6Cost)
+        {
+            star.interactable = false;
+        }
+        if (cash >= t6Cost)
+        {
+            star.interactable = true;
+        }
+        if (cash < t7Cost)
+        {
+            sniper.interactable = false;
+        }
+        if (cash >= t7Cost)
+        {
+            sniper.interactable = true;
         }
         if (cash < 250)
         {

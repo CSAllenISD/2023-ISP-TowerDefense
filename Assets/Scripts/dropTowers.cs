@@ -20,6 +20,12 @@ public class dropTowers : MonoBehaviour
     public GameObject tower5;
     public GameObject tower5ghost;
     public MeshRenderer ghost5Radius;
+    public GameObject tower6;
+    public GameObject tower6ghost;
+    public MeshRenderer ghost6Radius;
+    public GameObject tower7;
+    public GameObject tower7ghost;
+    public MeshRenderer ghost7Radius;
     public GameObject tower3ghost;
       public GameObject tower2ghost;
       public int TowerNumber;
@@ -31,6 +37,8 @@ public class dropTowers : MonoBehaviour
      public float placeRadius;
     public float placeRadius2;
     public float placeRadius5;
+    public float placeRadius6;
+    public float placeRadius7;
     public bool superCanPlace;
      public Material[] ghostMaterials;
     public Transform RotationPlacement;
@@ -39,11 +47,15 @@ public class dropTowers : MonoBehaviour
     public float yOffSetTower3;
     public float yOffSetTower4;
     public float yOffSetTower5;
+    public float yOffSetTower6;
+    public float yOffSetTower7;
     public int t1Cost;
     public int t2Cost;
     public int t3Cost;
     public int t4Cost;
     public int t5Cost;
+    public int t6Cost;
+    public int t7Cost;
     playerStats playerStats;
      void Start()
      {
@@ -350,6 +362,134 @@ public class dropTowers : MonoBehaviour
 
 
 
+            if (TowerNumber != 6)
+            {
+                if (tower6ghost.activeSelf)
+                {
+                    tower6ghost.transform.position = ghostArea.position;
+                }
+                tower6ghost.SetActive(false);
+            }
+
+            if (TowerNumber == 6)
+            {
+                tower6ghost.SetActive(true);
+                RaycastHit het;
+                Ray rey = nonVRCamera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(rey, out het, 1000f, ~IgnoreMe))
+                {
+                    if (het.transform.name == "floor")
+                    {
+                        tower6ghost.SetActive(true);
+                        tower6ghost.transform.position = het.point;
+                        canPlace = true;
+                        Collider[] hitColliders = Physics.OverlapSphere(het.point, placeRadius6);
+
+                        foreach (var hitCollider in hitColliders)
+                        {
+                            if (hitCollider.transform.gameObject.tag == "tower")
+                            {
+                                canPlace = false;
+                            }
+                        }
+                        if (canPlace == true)
+                        {
+                            superCanPlace = true;
+                        }
+                        else
+                        {
+                            superCanPlace = false;
+                        }
+                        if (superCanPlace)
+                        {
+                            ghost6Radius.material = ghostMaterials[1];
+                        }
+                        else
+                        {
+                            ghost6Radius.material = ghostMaterials[0];
+                        }
+                        //                 SpriteRenderer spriteR = tower1ghost.GetComponent<SpriteRenderer>();
+                        //   spriteR.color = Color.white;
+                    }
+                    if (het.transform.name != "floor")
+                    {
+                        tower6ghost.SetActive(true);
+                        tower6ghost.transform.position = het.point;
+                        ghost6Radius.material = ghostMaterials[0];
+                        //   SpriteRenderer spriteR = tower1ghost.GetComponent<SpriteRenderer>();
+                        //   spriteR.color = Color.red;
+                    }
+                }
+
+
+            }
+
+
+
+
+            if (TowerNumber != 7)
+            {
+                if (tower7ghost.activeSelf)
+                {
+                    tower7ghost.transform.position = ghostArea.position;
+                }
+                tower7ghost.SetActive(false);
+            }
+            if (TowerNumber == 7)
+            {
+                tower7ghost.SetActive(true);
+                RaycastHit het;
+                Ray rey = nonVRCamera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(rey, out het, 1000f, ~IgnoreMe))
+                {
+                    if (het.transform.name == "floor")
+                    {
+                        tower7ghost.SetActive(true);
+                        tower7ghost.transform.position = het.point;
+                        canPlace = true;
+                        Collider[] hitColliders = Physics.OverlapSphere(het.point, placeRadius7);
+
+                        foreach (var hitCollider in hitColliders)
+                        {
+                            if (hitCollider.transform.gameObject.tag == "tower")
+                            {
+                                canPlace = false;
+                            }
+                        }
+                        if (canPlace == true)
+                        {
+                            superCanPlace = true;
+                        }
+                        else
+                        {
+                            superCanPlace = false;
+                        }
+                        if (superCanPlace)
+                        {
+                            ghost7Radius.material = ghostMaterials[1];
+                        }
+                        else
+                        {
+                            ghost7Radius.material = ghostMaterials[0];
+                        }
+                        //                 SpriteRenderer spriteR = tower1ghost.GetComponent<SpriteRenderer>();
+                        //   spriteR.color = Color.white;
+                    }
+                    if (het.transform.name != "floor")
+                    {
+                        tower7ghost.SetActive(true);
+                        tower7ghost.transform.position = het.point;
+                        ghost7Radius.material = ghostMaterials[0];
+                        //   SpriteRenderer spriteR = tower1ghost.GetComponent<SpriteRenderer>();
+                        //   spriteR.color = Color.red;
+                    }
+                }
+
+
+            }
+
+
+
 
 
 
@@ -489,6 +629,22 @@ public class dropTowers : MonoBehaviour
                             GameObject towers = Instantiate(tower5, placePosition, RotationPlacement.rotation);
                             towers.SetActive(true);
                             playerStats.addCash(-t5Cost);
+                            TowerNumber = 0;
+                        }
+                        if (TowerNumber == 6)
+                        {
+                            Vector3 placePosition = new Vector3(hit.point.x, hit.point.y + yOffSetTower6, hit.point.z);
+                            GameObject towers = Instantiate(tower6, placePosition, RotationPlacement.rotation);
+                            towers.SetActive(true);
+                            playerStats.addCash(-t6Cost);
+                            TowerNumber = 0;
+                        }
+                        if (TowerNumber == 7)
+                        {
+                            Vector3 placePosition = new Vector3(hit.point.x, hit.point.y + yOffSetTower7, hit.point.z);
+                            GameObject towers = Instantiate(tower7, placePosition, RotationPlacement.rotation);
+                            towers.SetActive(true);
+                            playerStats.addCash(-t7Cost);
                             TowerNumber = 0;
                         }
                     }

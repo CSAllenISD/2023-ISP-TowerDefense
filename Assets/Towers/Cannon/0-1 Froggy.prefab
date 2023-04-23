@@ -957,6 +957,8 @@ MonoBehaviour:
   shootSpot1: {fileID: 744313402796522563}
   shootSpot2: {fileID: 0}
   shootSpot3: {fileID: 0}
+  shootSpot4: {fileID: 0}
+  shootSpot5: {fileID: 0}
   enemy: {fileID: 0}
   seeHidden: 0
   shootAnim: 1
@@ -992,7 +994,7 @@ MonoBehaviour:
   range: {fileID: 744313403659346366}
   UI: {fileID: 744313403356996969}
   TopPath: {fileID: 7896567116095798549, guid: 1fa036bf64ee1544593167dd9c9f84c9, type: 3}
-  BottomPath: {fileID: 1666459200357292929, guid: 024ae6d0cbbd47146ad3e11c278507ec,
+  BottomPath: {fileID: 1156874952592621053, guid: d9d203440d4bf0a4a9b9585337b82b60,
     type: 3}
   button1: {fileID: 744313402584449658}
   button2: {fileID: 744313404153889477}

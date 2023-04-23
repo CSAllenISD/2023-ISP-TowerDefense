@@ -733,6 +733,8 @@ MonoBehaviour:
   shootSpot1: {fileID: 6647689549657251314}
   shootSpot2: {fileID: 0}
   shootSpot3: {fileID: 0}
+  shootSpot4: {fileID: 0}
+  shootSpot5: {fileID: 0}
   enemy: {fileID: 0}
   seeHidden: 0
   shootAnim: 1
@@ -5406,9 +5408,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: '$35
 
-    Taller
-
-    Plant'
+    Larger Coverage'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

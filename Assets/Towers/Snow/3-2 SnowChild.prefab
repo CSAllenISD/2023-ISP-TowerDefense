@@ -555,6 +555,8 @@ MonoBehaviour:
   shootSpot1: {fileID: 5485367659064036199}
   shootSpot2: {fileID: 0}
   shootSpot3: {fileID: 0}
+  shootSpot4: {fileID: 0}
+  shootSpot5: {fileID: 0}
   enemy: {fileID: 0}
   seeHidden: 0
   shootAnim: 1
@@ -593,8 +595,8 @@ MonoBehaviour:
   BottomPath: {fileID: 0}
   button1: {fileID: 7405785675555199585}
   button2: {fileID: 4114497111374837423}
-  pricetop: 150
-  pricebottom: 4500
+  pricetop: 4500
+  pricebottom: 150
   sellValue: 1337
   pstats: {fileID: 0}
 --- !u!95 &4637497967565736496
