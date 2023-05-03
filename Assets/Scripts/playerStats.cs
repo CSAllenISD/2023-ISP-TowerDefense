@@ -28,6 +28,8 @@ public class playerStats : MonoBehaviour
     public int t5Cost;
     public int t6Cost;
     public int t7Cost;
+    public Color whiteColor;
+    public Color notWhite;
     void Start()
     {
         Rounds = 0;
@@ -43,66 +45,72 @@ public class playerStats : MonoBehaviour
         if (cash < t1Cost)
         {
             DartMonkey.interactable = false;
+            DartMonkey.gameObject.transform.GetChild(0).GetComponent<Image>().color = notWhite;
         }
         if (cash >= t2Cost)
         {
             DartMonkey.interactable = true;
+            DartMonkey.gameObject.transform.GetChild(0).GetComponent<Image>().color = whiteColor;
         }
         if (cash < t1Cost)
         {
             music.interactable = false;
+            music.gameObject.transform.GetChild(0).GetComponent<Image>().color = notWhite;
         }
         if (cash >= t2Cost)
         {
             music.interactable = true;
+            music.gameObject.transform.GetChild(0).GetComponent<Image>().color = whiteColor;
         }
         if (cash < t3Cost)
         {
             cannon.interactable = false;
+            cannon.gameObject.transform.GetChild(0).GetComponent<Image>().color = notWhite;
         }
         if (cash >= t3Cost)
         {
             cannon.interactable = true;
+            cannon.gameObject.transform.GetChild(0).GetComponent<Image>().color = whiteColor;
         }
         if (cash < t4Cost)
         {
             snow.interactable = false;
+            snow.gameObject.transform.GetChild(0).GetComponent<Image>().color = notWhite;
         }
         if (cash >= t4Cost)
         {
             snow.interactable = true;
+            snow.gameObject.transform.GetChild(0).GetComponent<Image>().color = whiteColor;
         }
         if (cash < t5Cost)
         {
             spider.interactable = false;
+            spider.gameObject.transform.GetChild(0).GetComponent<Image>().color = notWhite;
         }
         if (cash >= t5Cost)
         {
             spider.interactable = true;
+            spider.gameObject.transform.GetChild(0).GetComponent<Image>().color = whiteColor;
         }
         if (cash < t6Cost)
         {
             star.interactable = false;
+            star.gameObject.transform.GetChild(0).GetComponent<Image>().color = notWhite;
         }
         if (cash >= t6Cost)
         {
             star.interactable = true;
+            star.gameObject.transform.GetChild(0).GetComponent<Image>().color = whiteColor;
         }
         if (cash < t7Cost)
         {
             sniper.interactable = false;
+            sniper.gameObject.transform.GetChild(0).GetComponent<Image>().color = notWhite;
         }
         if (cash >= t7Cost)
         {
             sniper.interactable = true;
-        }
-        if (cash < 250)
-        {
-       //     TackShooter.interactable = false;
-        }
-        if (cash >= 250)
-        {
-        //    TackShooter.interactable = true;
+            sniper.gameObject.transform.GetChild(0).GetComponent<Image>().color = whiteColor;
         }
     }
     public void addCash(int money)

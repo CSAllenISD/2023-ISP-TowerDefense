@@ -15,8 +15,12 @@ public class selectScript : MonoBehaviour
 	public int pricebottom = 0;
 	public int sellValue;
 	public playerStats pstats;
+	public AudioSource selectSound;
+	public AudioSource sellSound;
 	void Start()
 	{
+		selectSound = GameObject.FindGameObjectsWithTag("selectEffect")[0].GetComponent<AudioSource>();
+		sellSound = GameObject.FindGameObjectsWithTag("sellEffect")[0].GetComponent<AudioSource>();
 		GameObject[] stats = GameObject.FindGameObjectsWithTag("statistics");
 		pstats = stats[0].GetComponent<playerStats>();
 	}
@@ -44,17 +48,20 @@ public class selectScript : MonoBehaviour
 
 	public void select()
 	{
+		selectSound.Play();
 		range.SetActive(true);
 		StartCoroutine(selectThing());
 	}
 	public void deselect()
 	{
+
 		range.SetActive(false);
 		StartCoroutine(deselectThing());
 	}
 
 	public void upgrade()
 	{
+		selectSound.Play();
 		Debug.Log("upgraded");
 		pstats.addCash(-pricetop);
 		Instantiate(TopPath, transform.position, transform.rotation);
@@ -62,6 +69,7 @@ public class selectScript : MonoBehaviour
 	}
 	public void upgrade2()
 	{
+		selectSound.Play();
 		Debug.Log("upgraded");
 		pstats.addCash(-pricebottom);
 		Instantiate(BottomPath, transform.position, transform.rotation);
@@ -69,6 +77,7 @@ public class selectScript : MonoBehaviour
 	}
 	public void sell()
     {
+		sellSound.Play();
 		pstats.addCash(sellValue);
 		Instantiate(sellFX, transform.position, transform.rotation);
 		Destroy(gameObject);

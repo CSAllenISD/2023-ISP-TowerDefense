@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
-  lifetime: 0.4
+  lifetime: 0.5
   rb: {fileID: 6672573923117063949}
   pierce: 30
   damage: 1
@@ -146,6 +146,7 @@ MonoBehaviour:
   hitHidden: 0
   slow: 0
   kb: 1
+  poisonValue: 0
 --- !u!54 &6672573923117063949
 Rigidbody:
   m_ObjectHideFlags: 0

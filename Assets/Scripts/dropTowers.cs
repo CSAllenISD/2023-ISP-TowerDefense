@@ -57,8 +57,10 @@ public class dropTowers : MonoBehaviour
     public int t6Cost;
     public int t7Cost;
     playerStats playerStats;
-     void Start()
+    public AudioSource selectSound;
+    void Start()
      {
+        selectSound = GameObject.FindGameObjectsWithTag("selectEffect")[0].GetComponent<AudioSource>();
         RotationPlacement = tower1.transform;
       GameObject scriptthing = GameObject.FindWithTag("statistics");
          playerStats = scriptthing.GetComponent<playerStats>();
@@ -592,6 +594,7 @@ public class dropTowers : MonoBehaviour
                               }
                         if (TowerNumber == 1 && superCanPlace == true)
                         {
+                            selectSound.Play();
                             Vector3 placePosition = new Vector3(hit.point.x, hit.point.y + yOffSetTower1, hit.point.z);
                             GameObject towers = Instantiate(tower1, placePosition, RotationPlacement.rotation);
                             towers.SetActive(true);
@@ -601,6 +604,7 @@ public class dropTowers : MonoBehaviour
                         }
                         if (TowerNumber == 2 && superCanPlace == true)
                         {
+                            selectSound.Play();
                             GameObject towers = Instantiate(tower2, hit.point, RotationPlacement.rotation);
                             towers.SetActive(true);
                             playerStats.addCash(-t2Cost);
@@ -609,6 +613,7 @@ public class dropTowers : MonoBehaviour
                         }
                         if (TowerNumber == 3)
                         {
+                            selectSound.Play();
                             Vector3 placePosition = new Vector3(hit.point.x, hit.point.y + yOffSetTower3, hit.point.z);
                             GameObject towers = Instantiate(tower3, placePosition, RotationPlacement.rotation);
                             towers.SetActive(true);
@@ -617,6 +622,7 @@ public class dropTowers : MonoBehaviour
                         }
                         if (TowerNumber == 4)
                         {
+                            selectSound.Play();
                             Vector3 placePosition = new Vector3(hit.point.x, hit.point.y + yOffSetTower4, hit.point.z);
                             GameObject towers = Instantiate(tower4, placePosition, RotationPlacement.rotation);
                             towers.SetActive(true);
@@ -625,6 +631,7 @@ public class dropTowers : MonoBehaviour
                         }
                         if (TowerNumber == 5)
                         {
+                            selectSound.Play();
                             Vector3 placePosition = new Vector3(hit.point.x, hit.point.y + yOffSetTower5, hit.point.z);
                             GameObject towers = Instantiate(tower5, placePosition, RotationPlacement.rotation);
                             towers.SetActive(true);
@@ -633,6 +640,7 @@ public class dropTowers : MonoBehaviour
                         }
                         if (TowerNumber == 6)
                         {
+                            selectSound.Play();
                             Vector3 placePosition = new Vector3(hit.point.x, hit.point.y + yOffSetTower6, hit.point.z);
                             GameObject towers = Instantiate(tower6, placePosition, RotationPlacement.rotation);
                             towers.SetActive(true);
@@ -641,6 +649,7 @@ public class dropTowers : MonoBehaviour
                         }
                         if (TowerNumber == 7)
                         {
+                            selectSound.Play();
                             Vector3 placePosition = new Vector3(hit.point.x, hit.point.y + yOffSetTower7, hit.point.z);
                             GameObject towers = Instantiate(tower7, placePosition, RotationPlacement.rotation);
                             towers.SetActive(true);
@@ -654,7 +663,8 @@ public class dropTowers : MonoBehaviour
     }
       public void changetothing(int number)
       {
-      if (TowerNumber == number)
+        selectSound.Play();
+        if (TowerNumber == number)
       {
        TowerNumber = 0;
 	  } else {

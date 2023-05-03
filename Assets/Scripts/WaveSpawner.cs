@@ -21,6 +21,8 @@ public class WaveSpawner : MonoBehaviour
     public TMP_Text texd;
     public playerStats pStats;
     public bool inRound;
+    public GameObject playButton;
+    public GameObject timeButton;
     void Start()
     {
         waveNumber = 0;
@@ -30,6 +32,8 @@ public class WaveSpawner : MonoBehaviour
     public GameManager gameManager;
     void Update()
     {
+            playButton.SetActive(!inRound);
+            timeButton.SetActive(inRound);
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartRound();
@@ -58,7 +62,7 @@ public class WaveSpawner : MonoBehaviour
 
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
 
-        waveCountdownText.text = string.Format("{0:00.0}", countdown);
+        //waveCountdownText.text = string.Format("{0:00.0}", countdown);
 
     }
 

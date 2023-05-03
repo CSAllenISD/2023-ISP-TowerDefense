@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 50
-  lifetime: 0.3
+  lifetime: 0.4
   rb: {fileID: 7795179299705314211}
   pierce: 10
   damage: 3
@@ -57,7 +57,7 @@ MonoBehaviour:
   explosionDamage: 0
   explosion: {fileID: 0}
   stunShot: 0
-  freezetime: 3
+  freezetime: 0.5
   spawner: 0
   Pos1: {fileID: 0}
   Pos2: {fileID: 0}
@@ -65,8 +65,9 @@ MonoBehaviour:
   Pos4: {fileID: 0}
   secondShot: {fileID: 0}
   hitHidden: 0
-  slow: 1
-  kb: 0
+  slow: 0
+  kb: 1
+  poisonValue: 0
 --- !u!54 &7795179299705314211
 Rigidbody:
   m_ObjectHideFlags: 0

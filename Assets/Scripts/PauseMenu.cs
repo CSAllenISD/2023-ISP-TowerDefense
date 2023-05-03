@@ -13,6 +13,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject settings;
     public AudioMixer audioMixer;
     public Slider slider;
+    public bool canPause;
     void Start()
     {
         if (!PlayerPrefs.HasKey("volume"))
@@ -37,7 +38,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && canPause)
         {
             if (menu.activeSelf)
             {

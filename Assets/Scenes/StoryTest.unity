@@ -6677,6 +6677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 0.1
+  saveUnlock: level0
   fullText:
   - What am I gonna do about all of them...
   - Fear not, for the great Stefano is here!
@@ -6714,7 +6715,7 @@ MonoBehaviour:
   - {fileID: 4872013165232039104}
   fadeAtEnd: 1
   fadeObject: {fileID: 715527657}
-  nextScene: TitleScene
+  nextScene: LevelSelector
   endInLogic: 0
   logicMenu: []
   tBox: {fileID: 0}
@@ -9531,6 +9532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 0.1
+  saveUnlock: 
   fullText:
   - Hmm... This paper has a set of 4 numbers on it, and the door takes a 4 number
     pin to unlock.
@@ -12022,6 +12024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 0.1
+  saveUnlock: 
   fullText:
   - There is a clear connection between these two points!
   - ...

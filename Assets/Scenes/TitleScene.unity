@@ -211,7 +211,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: StoryTest
+          m_StringArgument: LevelSelector
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &31603469
@@ -5260,6 +5260,8 @@ MonoBehaviour:
   pricebottom: 50
   sellValue: 0
   pstats: {fileID: 0}
+  selectSound: {fileID: 0}
+  sellSound: {fileID: 0}
 --- !u!136 &2099409448
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6348,6 +6350,8 @@ MonoBehaviour:
   pricebottom: 50
   sellValue: 0
   pstats: {fileID: 0}
+  selectSound: {fileID: 0}
+  sellSound: {fileID: 0}
 --- !u!224 &3265776984156176405
 RectTransform:
   m_ObjectHideFlags: 0

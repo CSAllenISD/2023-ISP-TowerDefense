@@ -37,6 +37,7 @@ public class enemy : MonoBehaviour
     public float normalSpeed;
     public float poisonValue = 0;
     public float pCounter;
+    public bool boss = false;
     void Start()
     {
         normalSpeed = speed;
@@ -195,7 +196,7 @@ public class enemy : MonoBehaviour
 
     public void freeze(float time)
     {
-        if (isMoab == false && isRainbow == false)
+        if (boss == false && isRainbow == false)
         {
             
                 StopAllCoroutines();
@@ -206,7 +207,7 @@ public class enemy : MonoBehaviour
     }
     public void slow(float time)
     {
-        if (isMoab == false && speed > 0f && isRainbow == false)
+        if (boss == false && speed > 0f && isRainbow == false)
         {
             StopAllCoroutines();
             speed = normalSpeed/2;
@@ -222,7 +223,7 @@ public class enemy : MonoBehaviour
     }
     public void backwards(float time)
     {
-        if (isMoab == false && isRainbow == false)
+        if (boss == false && isRainbow == false)
         {
             if (speed >= 0)
             {

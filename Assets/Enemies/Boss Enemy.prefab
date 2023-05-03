@@ -192,6 +192,10 @@ MonoBehaviour:
   isStefano: 1
   isDead: 0
   RBE: 1
+  normalSpeed: 0
+  poisonValue: 0
+  pCounter: 0
+  boss: 1
 --- !u!65 &4165408311712201475
 BoxCollider:
   m_ObjectHideFlags: 0

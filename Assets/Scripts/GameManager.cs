@@ -7,11 +7,10 @@ public class GameManager : MonoBehaviour
     public AudioSource audio;
     public GameObject gameOverUI;
     public GameManager gameManager;
-    public string nextLevel = "Level02";
-    public int LevelToUnlock = 2;
+    public string LevelToUnlock;
     public GameObject chicken;
     public AudioSource win;
-
+    public PauseMenu pMenu;
     void Start()
     {
         gameEnded = false;
@@ -32,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     void EndGame()
     {
+        pMenu.canPause = false;
         gameEnded = true;
         audio.Play();
         Time.timeScale = 1;
@@ -45,19 +45,19 @@ public class GameManager : MonoBehaviour
 
     public void WinLevel()
     {
-        if (PlayerPrefs.GetInt("levelReached") < LevelToUnlock && gameEnded == false)
-        {
             Time.timeScale = 1;
-            PlayerPrefs.SetInt("levelReached", LevelToUnlock);
-        }
+            PlayerPrefs.SetInt(LevelToUnlock, 1);
+        PlayerPrefs.Save();
         StartCoroutine(testthing());
     }
 
     IEnumerator testthing()
     {
+        pMenu.canPause = false;
         chicken.SetActive(true);
         win.Play();
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(5);
+        Time.timeScale = 1;
         SceneManager.LoadScene("LevelSelector");
 
     }

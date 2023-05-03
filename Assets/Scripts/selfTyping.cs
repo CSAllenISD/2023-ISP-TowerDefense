@@ -9,6 +9,7 @@ public class selfTyping : MonoBehaviour
 {
 
     public float delay = 0.1f;
+    public string saveUnlock;
     [Header("Make All of These Arrays the Same Length")]
     public string[] fullText;
     public int[] speaker;
@@ -41,7 +42,10 @@ public class selfTyping : MonoBehaviour
     public GameObject[] happy;
     public GameObject[] confused;
     public GameObject[] angry;
-    
+
+    [Header("random shtuff ii am braindead ")]
+    public bool spawnRobot = false;
+    public GameObject robotMan;
     private void openLogic()
     {
         for (int a = 0; a < (logicMenu.Length); a++)
@@ -164,6 +168,10 @@ public class selfTyping : MonoBehaviour
         textPosition += 1;
         if (textPosition < fullText.Length)
         {
+            if (textPosition == 3 && spawnRobot)
+            {
+                robotMan.SetActive(true);
+            }
             StartCoroutine(ShowText(textPosition));
         } else
         {
@@ -182,6 +190,8 @@ public class selfTyping : MonoBehaviour
     IEnumerator fade()
     {
         fadeObject.SetActive(true);
+        PlayerPrefs.SetInt(saveUnlock, 1);
+        PlayerPrefs.Save();
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(nextScene);
 
