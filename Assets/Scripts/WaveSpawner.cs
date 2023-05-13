@@ -85,7 +85,7 @@ public class WaveSpawner : MonoBehaviour
         }
 
         waveNumber++;
-        pStats.addCash(100);
+        pStats.addCash(200);
     }
     void SpawnEnemy(GameObject enemy)
     {

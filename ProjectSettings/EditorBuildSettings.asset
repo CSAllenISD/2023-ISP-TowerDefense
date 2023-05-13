@@ -23,4 +23,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StoryMeadow02.unity
     guid: d1dbcd820fe05f943ad42177b4f8ba82
+  - enabled: 1
+    path: Assets/Scenes/FP_Disco.unity
+    guid: 5f8710f6a0b0d6c4e93fdc23d9d4dc8a
+  - enabled: 1
+    path: Assets/Scenes/FP_Meadow.unity
+    guid: b8775ee410b8554448fea8a3483652d5
   m_configObjects: {}

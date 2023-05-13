@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject chicken;
     public AudioSource win;
     public PauseMenu pMenu;
+    public bool freePlay = false;
     void Start()
     {
         gameEnded = false;
@@ -58,7 +59,16 @@ public class GameManager : MonoBehaviour
         win.Play();
         yield return new WaitForSeconds(5);
         Time.timeScale = 1;
-        SceneManager.LoadScene("LevelSelector");
+        if (!freePlay)
+        {
+            SceneManager.LoadScene("LevelSelector");
+        } else
+        {
+            SceneManager.LoadScene("TitleScene");
+        }
+
 
     }
-}
+
+    }
+

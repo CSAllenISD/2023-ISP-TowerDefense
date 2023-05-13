@@ -194,7 +194,7 @@ public class dropTowers : MonoBehaviour
 
                         foreach (var hitCollider in hitColliders)
                         {
-                            if (hitCollider.transform.gameObject.tag == "tower")
+                            if (hitCollider.transform.gameObject.tag == "tower" || hitCollider.transform.gameObject.tag == "obstacle")
                             {
                                 canPlace = false;
                             }

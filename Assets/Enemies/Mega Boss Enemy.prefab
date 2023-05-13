@@ -56,7 +56,7 @@ MonoBehaviour:
   kid: {fileID: 4165408311828764403, guid: d74edd8f3a5972a438b6f50d81f00d36, type: 3}
   isCeramic: 0
   wavething: 0
-  health: 150
+  health: 100
   value: 20
   deathEffect: {fileID: 1345117842410185526, guid: 86bd0ad887445ee429b3a9982684df57,
     type: 3}

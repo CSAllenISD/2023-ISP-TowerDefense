@@ -14,8 +14,10 @@ public class PauseMenu : MonoBehaviour
     public AudioMixer audioMixer;
     public Slider slider;
     public bool canPause;
+    public AudioSource menuSounds;
     void Start()
     {
+        menuSounds = GameObject.Find("MenuSounds").GetComponent<AudioSource>();
         if (!PlayerPrefs.HasKey("volume"))
         {
             audioMixer.SetFloat("volume", 20);
@@ -40,6 +42,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape) && canPause)
         {
+            menuSounds.Play();
             if (menu.activeSelf)
             {
                 menu.SetActive(false);
@@ -61,6 +64,7 @@ public class PauseMenu : MonoBehaviour
 
     public void openSettings()
     {
+        menuSounds.Play();
         pause.SetActive(false);
         settings.SetActive(true);
     }
@@ -68,12 +72,13 @@ public class PauseMenu : MonoBehaviour
 
     public void closeSettings()
     {
+        menuSounds.Play();
         pause.SetActive(true);
         settings.SetActive(false);
     }
     public void unPause()
     {
-
+        menuSounds.Play();
         menu.SetActive(false);
         pause.SetActive(true);
         settings.SetActive(false);
@@ -85,6 +90,7 @@ public class PauseMenu : MonoBehaviour
 
     public void toggleAutoStart()
     {
+        menuSounds.Play();
         if (PlayerPrefs.HasKey("autoStart"))
         {
             if (PlayerPrefs.GetInt("autoStart") == 1)
@@ -106,6 +112,7 @@ public class PauseMenu : MonoBehaviour
 
     public void SetVolume (float volume)
     {
+       // menuSounds.Play();
         audioMixer.SetFloat("volume", volume);
         PlayerPrefs.SetFloat("volume", volume);
         PlayerPrefs.Save();

@@ -107,6 +107,7 @@ public class enemy : MonoBehaviour
                     }
                 }
             }
+            GameObject.Find("DeathSound").GetComponent<AudioSource>().Play();
         }
             playerStats.addCash(value);
         GameObject effect = (GameObject)Instantiate(deathEffect, ParentTransform.position, Quaternion.identity);
@@ -133,7 +134,7 @@ public class enemy : MonoBehaviour
         Vector3 dir = target.position - ParentTransform.position;
         ParentTransform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
-        if (Vector3.Distance(ParentTransform.position, target.position) <= 5f)
+        if (Vector3.Distance(ParentTransform.position, target.position) <= 3f)
         {
             GetNextWaypoint();
 
